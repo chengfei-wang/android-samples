@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         if (resultCode == Activity.RESULT_OK && data != null) {
             when (requestCode) {
                 RESULT_LOAD_IMAGE -> {
-                    data.data?.let { uri -> load(this, uri)?.also { image_test.setImageBitmap(it) } }
+                    data.data?.let { uri -> load(this, uri)?.cropCenter().also { image_test.setImageBitmap(it) } }
 //                    data.data?.let {
 //                        image_test.setImageURI(it)
 //                        image_test.setImageBitmap(load(this, it).cropCenter().zoom(1000, 1000))
