@@ -72,16 +72,10 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
         fun load(context: Context, uri: Uri): Bitmap? {
             try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    return ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, uri))
+                return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, uri))
                 } else {
-                    val columns = arrayOf(MediaStore.Images.Media.DATA)
-                    val cursor = context.contentResolver?.query(uri, columns, null, null, null)
-                    if (cursor != null && cursor.moveToFirst() && cursor.count > 0) {
-                        val path = cursor.getString(cursor.getColumnIndex(columns[0]))
-                        cursor.close()
-                        return load(path, true)
-                    }
+                    BitmapFactory.decodeStream(context.contentResolver.openInputStream(uri))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
