@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:shortcutShortLabel="@string/settings"
+        android:shortcutId="settings">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="xyz.nfcv.test.photo.TestActivity"
+            android:targetPackage="xyz.nfcv.test.photo">
+            <extra
+                android:name="from"
+                android:value="home"/>
+        </intent>
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>
