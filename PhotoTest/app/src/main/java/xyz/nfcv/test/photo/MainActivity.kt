@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        getPermission()
         choose_img.setOnClickListener {
             getPicture()
         }
@@ -32,14 +32,13 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && data != null) {
             when (requestCode) {
-                RESULT_LOAD_IMAGE -> {
-                    data.data?.let { uri -> load(this, uri)?.cropCenter().also { image_test.setImageBitmap(it) } }
-                }
+                RESULT_LOAD_IMAGE -> data.data?.let { uri -> load(this, uri)?.cropCenter().also { image_test.setImageBitmap(it) } }
             }
         }
     }
 
     private fun getPicture() {
+        //Intent.ACTION_PICK, Intent.ACTION_GET_CONTENT
         val intent = Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, RESULT_LOAD_IMAGE)
     }

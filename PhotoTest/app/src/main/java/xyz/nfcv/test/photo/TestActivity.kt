@@ -11,6 +11,6 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
         setSupportActionBar(toolbar)
-        Log.d(javaClass.name, intent.getStringExtra("from") ?: "null")
+        Log.d(javaClass.name, "from: " + intent.getStringExtra("from") ?: "null")
     }
 }
